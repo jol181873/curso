@@ -1,0 +1,25 @@
+//moto
+
+atributos:
+
+int rueda =2:
+string tipo_vehiculo = "Moto";
+int potencia
+double velocidad
+double combustible
+boolean encendido
+double velocidad_max{
+	velocidad_max = velocidad + 100;
+}
+
+double combustible_max{
+	combustible_max = combustible + 50;
+}
+boolean caballito;
+
+metodos:
+
+public double acelerar();
+public double frenar();
+public double repostar();
+public boolean iluminar();

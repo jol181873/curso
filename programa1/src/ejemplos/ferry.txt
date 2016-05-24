@@ -1,0 +1,97 @@
+
+public class Ferry implements vehiculo_motor{
+
+  
+   protected String nombreferry;
+   protected int numPasajeros;
+   protected int numTripulantes;
+   protected int Salvavidas;
+   protected double capacidad_carga;
+   protected double cargaActual;
+ 
+   // constructor vacio
+   public void Ferry() { 
+              super
+                       }
+
+
+   // Constructor que usa el nombreferry, numtripulantes, numpasajeros, capacidad_carga, salvavidas para crear un objeto ferry
+   public void Ferry(String  nombreferry, int numTripulantes, int numPasajeros, double capacidad_carga, int Salvavidas) {
+            this.nombreferry = nombreferry;
+            this.numTripulantes = numTripulantes;
+	    this.numPasajeros = numPasajeros; 
+            this.capacidad_carga = capacidad_carga;
+            this.Salvavidas=Salvavidas 
+           }
+  
+   // Metodo que añade un pasajero al pasaje
+   public void embarcar() {
+          numPasajeros++;
+       }
+ 
+   // metodo que desembarca un pasajero 
+   public void desembarcar() {
+          if (numPasajeros > 0)
+             numPasajeros--;
+             }
+
+   // Metodo que devuelve el numero de pasajeros que hay actualmente en el ferry
+   public int dameNumPasajeros() {
+               System.out.println("el numero de pasajeros es"+numPasajeros)
+                 }
+
+   // Metodo que añade carga a la bodega
+   public void cargar(double car) {
+           if ((cargaActual + car) =< capacidad_carga) {
+                  cargaActual = cargaActual + car;
+                }
+                         
+        }
+    
+   // metodo que descarga carga a la bodega
+   public void descargar(double car) {
+          if ((cargaActual - car) >0 ) {
+                  cargaActual = cargaActual - car;
+                    
+
+      }
+   public void damecarga() {
+             system.out.println("La carga actual del ferry es : " + cargaActual;
+              }
+
+   // metodo que permite acelerar el ferry
+   public abstract void acelerar() {
+              System.out.println("Estoy acelerando");
+               if (velocidad < velocidad_Max)  
+                                velocidad++;
+                 };
+
+   // metodo que permite frenar el ferry
+   public abstract void frenar() {
+               System.out.println("Estoy frenando");
+               if ( velocidad > 0) {
+                       velocidad--;
+                      }
+                }
+   // Metodo que disminuye una unidad el combustible
+   public abstract void conducir() {
+                System.out.println("Estoy conduciendo");
+             if ( combustible > 0) {
+                       combustible--;
+                      }
+                }
+   // Metodo que añade una unidad de combustible
+   public abstract void repostar()  {
+
+          System.out.println("Estoy repostando");
+          if ( combustible < velocidad > 0) {
+                       combustible++;
+                      }
+                 }
+
+
+}
+
+
+
+  

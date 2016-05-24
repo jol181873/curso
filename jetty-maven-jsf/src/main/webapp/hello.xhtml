@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Hello!</title>
+    <style>
+    	.centrado {
+    		margin-left:auto;
+    		margin-right:auto;
+    		margin-top: 100px;
+    		margin-bottom: auto;
+    	}
+    	.anchura400px {
+    		width: 400px;    		
+    	}
+    	
+    	.altura250px {
+    		height: 250px;
+    	}
+    	
+    	.anchura150px {
+    		width: 150px;
+    	}
+    	
+    	.borde-login {
+    		border-width: 1px;
+    		border-color: black;
+    		border-style: solid;
+    	}
+    	
+    	.padding10px {
+    		padding: 10px;
+    	}
+    	
+    	.padding-top10px {
+    		padding-top: 10px;
+    	}
+    	
+    	.anchura-100-porcentaje {
+    		width: 100%;
+    	}
+    </style>
+</h:head>
+<h:body>	    
+    <h:form>
+	    <div class="borde-login anchura400px centrado padding10px altura250px">
+	      <h3>Introduzca sus credenciales</h3>
+	      
+	      <div class="anchura150px">Nombre usuario:</div>
+	      <div class="anchura-100-porcentaje">
+	      	<h:inputText id="username" value="#{login.nombreUsuario}"/>
+	      </div> 
+	      <h:message for="username" errorStyle="color: red" infoStyle="color: green"/>
+	         
+	      <div class="anchura150px padding-top10px">Password:</div>
+	      <h:inputSecret id="password" class="" value="#{login.password}"/>
+	      <div class="anchura-100-porcentaje">
+	      	<h:message for="password" errorStyle="color: red" infoStyle="color: green"/>
+      	  </div>
+	      
+	      <div class="anchura150px padding-top10px"><h:commandButton action="#{login.login}" value="Aceptar"/></div>
+	    </div>
+    </h:form>
+    
+</h:body>
+</html>

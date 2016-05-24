@@ -1,0 +1,45 @@
+Lancha
+
+Atributos:
+
+- int capacidad // Número de plazas
+- int carga // Máxima carga de kilos
+- String modelo // Básico, medio o deluxe
+
+
+
+Métodos:
+
+acelerar{
+	acelerar = acelerar + 1
+}
+frenar{	
+	frenar = frenar - 1
+}
+repostar{
+	combustible = combustible + 1
+	
+}
+conducir{
+	leer x1, d1, x2, d2  
+	donde x1 & y1 son las coordenadas del punto de origen
+	x2 & y2 coordenadas del punto de destino
+}
+ver_combustible{
+	mostrar combustible
+}
+ver_velocidad{
+	mostrar velocidad
+}
+encender vehiculo{
+	encendiendo = true
+}
+apagar vehiculo{
+	encendiendo = false
+}
+
+
+
+
+
+

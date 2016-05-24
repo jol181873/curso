@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error">
+  <Properties>
+    <Property name="filename">target/test.log</Property>
+  </Properties>
+  
+ 
+  <Appenders>
+    <Console name="STDOUT">
+      <PatternLayout pattern="%m %X%n"/>
+    </Console>   
+    <File name="File" fileName="${filename}">
+      <PatternLayout>
+        <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+      </PatternLayout>
+    </File>    
+  </Appenders>
+ 
+  <Loggers>       
+    <Logger name="modelo" level="error">
+      <AppenderRef ref="File"/>
+    </Logger>
+    <Root level="error">
+      <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+ 
+</Configuration>

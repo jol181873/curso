@@ -1,0 +1,95 @@
+/**
+ * Clase que modela el comportamiento de un barco.
+ * @author Gonzalo Sánchez
+ *
+ */
+
+
+public class Barco extends VehiculoMotor {
+
+	
+	private int tripulacion; 		//Número de personas
+	
+	
+	
+	//Constructor:
+	// No se solicitan más parámetros que los de la clase padre.
+	public Barco(int potencia, double velocidadMaxima, double capacidadCombustible, String tipo) {
+		super(potencia, velocidadMaxima, capacidadCombustible, tipo);
+		
+
+		// Se crea el tipo de vehículo
+		this.tipo_vehiculo = "Barco";
+		// Se añade algo de combustible al crear el barco.
+		this.combustible = 500000;
+		// Tripulación de 15 personas.
+		this.tripulacion = 15;
+		
+	}
+	
+	
+	
+	/**
+	 * Método para la corrección linguística. :P
+	 * Y para encender los motores del barco.
+	 */
+	public void conducir() {
+		this.encendido = true;
+		System.out.println("Los barcos no se conducen, se capitanean, tripulan y navegan.");
+	}
+	
+	
+	/**
+	 * Acelera el barco 1 nudo  (1 nudo = 1,852 km/h)
+	 * No se puede acelerar el barco más que su velocidad máxima.
+	 */
+	@Override
+	public void acelerar() {
+		if(velocidad < velocidad_Max) {
+			velocidad++;
+			System.out.println("El barco se ha acelerado 1 nudo.");
+		} else if(velocidad == velocidad_Max || velocidad > velocidad_Max) {
+			System.out.println("El barco ya navega a su velocidad máxima.");
+		}
+	}
+
+	
+	/**
+	 * Frena el barco en 1 nudo (1 nudo = 1,852 km/h)
+	 * El barco no puede adquirir velocidad negativa.
+	 */
+	@Override
+	public void frenar() {
+		if(velocidad  > 1) {
+			velocidad--;
+			System.out.println("El barco ha frenado 1 nudo.");
+		} else if(velocidad == 1) {
+			velocidad--;
+			System.out.println("El barco ha detenido.");
+		} else if(velocidad <= 0) {
+			System.out.println("El barco no puede ir hacia atrás.");
+		}
+	}
+
+	
+	
+	/**
+	 * Añade 1000 litros de fuel al depósito de combustible.
+	 * No se puede rebasar la capacidad máxima de combustible.
+	 */
+	@Override
+	public void repostar() {
+		if(combustible + 1000 <= combustible_Max) {
+			combustible += 1000;
+			System.out.println("Se han añadido 1000 litros de fuel al depósito de combustible.");
+		} else if(combustible + 1000 > combustible_Max) {
+			combustible = combustible_Max;
+			System.out.println("El depósito está al máximo");
+		}
+		
+	}
+
+
+	
+	
+}
