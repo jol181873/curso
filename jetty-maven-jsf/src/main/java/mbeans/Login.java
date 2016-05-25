@@ -3,8 +3,10 @@ package mbeans;
 import java.io.Serializable;
 import java.sql.SQLException;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -50,11 +52,16 @@ public class Login implements Serializable {
 
 			if (usuarioLogueado == null) {
 				// no es un nombre de usuario correcto
+				FacesContext.getCurrentInstance().addMessage("miform:username",
+						new FacesMessage("El usuario no existe"));
 
-				return "nombreUsuarioIncorrecto";
+				return null;
 			} else {
 				if (!usuarioLogueado.esCorrecto(usuario.getPassword())) {
-					return "passwordErroneo";
+					FacesContext.getCurrentInstance().addMessage("miform:password",
+							new FacesMessage("Password incorrecto"));
+
+					return null;
 				} else {
 					return "loginValido";
 				}
@@ -65,6 +72,6 @@ public class Login implements Serializable {
 
 		}
 
-		return "/loginValido";
+		return null;
 	}
 }

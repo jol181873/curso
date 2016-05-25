@@ -3,9 +3,12 @@
 
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" >
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	
 	
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 	<script src="jquery-ui-1.11.4.custom/jquery-ui.js"></script>
@@ -84,10 +87,15 @@
 				text-align: left;
 			}
 		}
-		
-		.ui-menu-item {
-		width: 150px;
-		}
+						
+		.mi-menu {
+			position:absolute;
+			border-width:1px;
+			border-color:#a46313;
+			border-style:solid;
+			width:200px;
+			height:100px
+		}		
 	</style>
 
 	<script>
@@ -97,28 +105,34 @@
 		
 		$(function() {
 			$("#menuArchivo").menu({
-				  position: { my: "center top", at: "left bottom" }
+				  position: { my: "center top", at: "right bottom" }
 			});
-			$("#menuPelu").menu({
-				  position: { my: "center bottom", at: "center top" }
+			$("#menuModulos").menu({
+				  position: { my: "center top", at: "right bottom" }
 			});
 			$("#menuAdmin").menu({
-				  position: { my: "center bottom", at: "center top" }
+				  position: { my: "center top", at: "right bottom" }
 			});
 			$("#menuAcerca").menu({
-				  position: { my: "center bottom", at: "center top" }
+				  position: { my: "center top", at: "right bottom" }
+			});
+			
+			$("#acerca").dialog({
+				width :400,
+				height :300,
+				autoOpen: false
+			});
+									
+			$("#listadoPelus").dialog({
+				width :900,
+				height :600,
+				autoOpen: false,
+				title: "Peluquerías"
 			});
 			
 			
 		});
 	</script>
-
-
-
-
-
-
-
 
 	
 	<style>
@@ -127,76 +141,136 @@
 			text-align: right;
 		}
 	</style>
+	
+	<style>
+		.order-table{   
+			border-collapse:collapse;
+			width: 100%;
+		}
+		
+		.order-table-header{
+			text-align:center;
+			background-color: #E5E5E5;
+			border-bottom:1px solid #BBBBBB;
+			padding:16px;
+		}
+		
+		.order-table-odd-row{
+			text-align:center;
+			background-color: #FFC500;
+			border-top:1px solid #BBBBBB;
+		}
+		
+		.order-table-even-row{
+			text-align:center;
+			background-color: #F9F9F9;
+			border-top:1px solid #BBBBBB;
+		}
+	</style>
 </head>
-<body>
-	<h:form>
-		<div class="enlace-cerrar-sesion">
-			<h:commandLink actionListener="#{utilidades.cerrarSesion}">Cerrar sesión</h:commandLink>
-		</div>
-	</h:form>
-	<h3>Mi WebApp</h3>
-	
-	<ul class="topnav">
-		<li><a class="active" href="#home">Archivo</a></li>
-	
-		<li><a href="#contact">Administración</a></li>
-		<li><a href="#about">Acerca de...</a></li>
-		<li class="icon">
-			<a href="javascript:void(0);" style="font-size: 15px;" onclick="myFunction()">
-				&equiv;
-			</a>
-		</li>
-	</ul>
-	
-	<!--  <ul class="topnav">
-		<li>
-			<ul id="menuArchivo">
-				<li> Archivo
-					<ul style="position:fixed !important">
-						<li style="width:100%">
-							Salir
-						</li>
-					</ul>				
-				</li>
-			</ul>			
-		</li>
-		<li>		
-			<ul id="menuPelu" >
-				<li>Módulos
-			        <ul style="position:fixed !important">
-			          <li style="width:100%">Ada</li>
-			          <li style="width:100%">Saarland</li>
-			          <li style="width:100%">Salzburg</li>
-			        </ul>
-			      </li>
-			</ul>
-		</li>
-		<li>		
-			<ul id="menuAdmin">
-				<li>Administración
-			        <ul >
-			          <li style="width:100%">Ada</li>
-			          <li style="width:100%">Saarland</li>
-			          <li style="width:100%">Salzburg</li>
-			        </ul>
-			      </li>
-			</ul>
-		</li>
-		<li>
-			<ul id="menuAcerca" style="width:150px;">
-				<li>
+<body >
+	<h:form>			
+		<h3>Mi WebApp</h3>
+		
+		<ul class="topnav">
+			<li>
+				<a class="active" href="#home" onclick="$('.mi-menu').hide();$('#menuArchivo').toggle()">
+					Archivo
+				</a>
+			</li>	
+			<li>
+				<a href="#contact" onclick="$('.mi-menu').hide();$('#menuModulos').toggle()">
+					Módulos
+				</a>
+			</li>
+			<li>
+				<a href="#contact" onclick="$('.mi-menu').hide();$('#menuAdmin').toggle()">
+					Administración
+				</a>
+			</li>
+			<li>
+				<a href="#about" onclick="$('.mi-menu').hide();$('#acerca').dialog('open')">
 					Acerca de...
-				</li>
+				</a>
+			</li>
+			<li class="icon">
+				<a href="javascript:void(0);" style="font-size: 15px;" onclick="myFunction()">
+					&equiv;
+				</a>
+			</li>
+		</ul>	
+		
+		
+		<div style="width:100%;height:150px" onclick="$('.mi-menu').hide()">
+			<div id="menuArchivo" class="mi-menu" style="display:none">				
+				<div>
+					<h:commandLink class="cerrar-sesion" actionListener="#{utilidades.cerrarSesion}">Salir</h:commandLink>
+				</div>		
+			</div>
+			
+			<ul id="menuModulos" class="mi-menu" style="display:none;left:88px;">				
+				<li>Peluquerías
+					<ul>
+						<li>
+							Nueva
+						</li>
+						<li>						
+							<h:commandLink action="#{controladorPelus.obtenerPelus}">Listado</h:commandLink>
+						</li>
+					</ul>
+				</li>		
 			</ul>
-		</li>				
-		<li class="icon">
-			<a href="javascript:void(0);" style="font-size: 15px;" onclick="myFunction()">
-				&equiv;
-			</a>
-		</li>
-	</ul>
-	-->
-
+			
+			<ul id="menuAdmin" class="mi-menu" style="display:none;left: 180px">				
+				<li>Usuarios
+					<ul>
+						<li>
+							Nuevo
+						</li>
+						<li>
+							Listado
+						</li>
+					</ul>
+				</li>		
+			</ul>
+		</div>
+		
+		<div id="acerca" style="display:none;">
+			Mi Web App 2016
+		</div>
+		
+		<c:if test="#{not empty controladorPelus.lista}">
+			<script>
+				$(function() {
+					$("#listadoPelus").dialog("open");
+				})
+			</script>
+		</c:if>
+		
+		<div id="listadoPelus">			
+			<h:inputText value="#{controladorPelus.filtroNombre}"/>
+			<h:commandButton action="#{controladorPelus.obtenerPelus}" value="Aceptar" />	
+			<h:commandLink action="#{controladorPelus.obtenerPelus}">Listado</h:commandLink>		
+			
+			<h:dataTable var="pelu" value="#{controladorPelus.lista}" 
+						styleClass="order-table" 
+						headerClass="order-table-header"
+		    			rowClasses="order-table-odd-row,order-table-even-row">
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+					#{pelu.nombre}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Dirección</f:facet>
+					#{pelu.direccion}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Teléfono</f:facet>
+					#{pelu.telefono}
+				</h:column>
+			</h:dataTable>
+		</div>			
+	</h:form>	
 </body>
 
 </html>

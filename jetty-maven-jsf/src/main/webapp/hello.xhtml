@@ -73,23 +73,21 @@
 
 	<div id="dialogo"
 		class="borde-login anchura400px centrado padding10px altura250px">
-		<h:form>
+		<h:form id="miform">
 			<h3>Introduzca sus credenciales</h3>
 
 			<div class="anchura150px">Nombre usuario:</div>
 			<div class="anchura-100-porcentaje">
 				<h:inputText id="username" value="#{login.nombreUsuario}" />
 			</div>
-			<h:message for="username" errorStyle="color: red"
-				infoStyle="color: green" />
+			<h:message for="username" errorStyle="color: red" infoStyle="color: green" />
 
 			<div class="anchura150px padding-top10px">Password:</div>
 			<h:inputSecret id="password" class="" value="#{login.password}" />
 			<div class="anchura-100-porcentaje">
-				<h:message for="password" errorStyle="color: red"
-					infoStyle="color: green" />
+				<h:message for="password" errorStyle="color: red" infoStyle="color: green" />
 			</div>
-
+											
 			<div class="anchura150px padding-top10px">
 				<h:commandButton action="#{login.login}" value="Aceptar" />
 			</div>			
