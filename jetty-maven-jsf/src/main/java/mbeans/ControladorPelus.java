@@ -5,26 +5,27 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import modelo.peluqueria.NegocioPeluqueria;
 import modelo.peluqueria.Peluqueria;
 
 @ManagedBean(name = "controladorPelus")
-@SessionScoped
+@ViewScoped
 public class ControladorPelus {
 
 	private List<Peluqueria> lista;
 
+	private List<Peluqueria> pelusFiltradas;
+
 	private String filtroNombre;
 
-	public String obtenerPelus() {
+	public String getObtenerPelus() {
 		NegocioPeluqueria neg = NegocioPeluqueria.getInstance();
 
 		try {
 			neg.conectar();
-
-			System.out.println("XXXXXXXX " + filtroNombre);
 
 			if (filtroNombre == null || filtroNombre.equals("")) {
 				setLista(neg.findAll(neg.getConnection()));
@@ -33,6 +34,7 @@ public class ControladorPelus {
 				hash.put("pelu_nombre", filtroNombre);
 
 				setLista(neg.findParecidos(neg.getConnection(), hash));
+				setPelusFiltradas(getLista());
 			}
 
 		} catch (SQLException e) {
@@ -41,6 +43,26 @@ public class ControladorPelus {
 		}
 
 		return null;
+	}
+
+	public String borrar() {
+		try {
+			String codigPelu = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
+					.get("codigoPelu");
+
+			NegocioPeluqueria neg = NegocioPeluqueria.getInstance();
+			System.out.println("sdfvgsgsfgsgsgsgfgsfgf");
+
+			Peluqueria pelu = new Peluqueria();
+			pelu.setId(codigPelu);
+			neg.conectar();
+			neg.borrarObjeto(neg.getConnection(), pelu);
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return "loginValido";
 	}
 
 	public List<Peluqueria> getLista() {
@@ -57,6 +79,14 @@ public class ControladorPelus {
 
 	public void setFiltroNombre(String filtroNombre) {
 		this.filtroNombre = filtroNombre;
+	}
+
+	public List<Peluqueria> getPelusFiltradas() {
+		return pelusFiltradas;
+	}
+
+	public void setPelusFiltradas(List<Peluqueria> pelusFiltradas) {
+		this.pelusFiltradas = pelusFiltradas;
 	}
 
 }

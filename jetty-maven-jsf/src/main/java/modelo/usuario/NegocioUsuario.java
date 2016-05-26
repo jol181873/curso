@@ -118,7 +118,24 @@ public class NegocioUsuario extends BD<Usuario> {
 				throw new RuntimeException(e);
 			}
 		}
+	}
 
+	@Override
+	public void borrarObjeto(Connection conn, Usuario objeto) throws SQLException {
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("DELETE USUARIO WHERE USUA_ID=?");
+			st.setString(1, objeto.getId());
+
+			int executeUpdate = st.executeUpdate();
+		} finally {
+			try {
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
 	}
 
 	// ================================================================================================

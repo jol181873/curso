@@ -159,6 +159,24 @@ public class NegocioPeluqueria extends BD<Peluqueria> {
 
 	}
 
+	@Override
+	public void borrarObjeto(Connection conn, Peluqueria objeto) throws SQLException {
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("DELETE PELUQUERIA WHERE PELU_ID=?");
+			st.setString(1, objeto.getId());
+
+			int executeUpdate = st.executeUpdate();
+		} finally {
+			try {
+				st.close();
+				conn.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+	}
+
 	// ================================================================================================
 	// ================================================================================================
 	// ================================================================================================
@@ -203,7 +221,6 @@ public class NegocioPeluqueria extends BD<Peluqueria> {
 	public void setConnection(Connection conn) {
 		this.conn = conn;
 	}
-
 	// ================================================================================================
 	// ================================================================================================
 	// ================================================================================================

@@ -180,6 +180,8 @@ public abstract class BD<T> {
 
 	public abstract void modificarListaObjetos(Connection conn, List<T> listaObjetos) throws SQLException;
 
+	public abstract void borrarObjeto(Connection conn, T objeto) throws SQLException;
+
 	// ========================================================================
 	protected abstract T tratarResultSet(ResultSet rs) throws SQLException;
 
