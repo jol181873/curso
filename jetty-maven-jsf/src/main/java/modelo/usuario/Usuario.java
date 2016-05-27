@@ -43,7 +43,7 @@ public class Usuario extends Bean<Usuario> {
 	}
 
 	/**
-	 * Se guarda el hash md5 del password, si se pierde la contraseña, es
+	 * Se guarda el hash md5 del password, si se pierde la contraseï¿½a, es
 	 * irrecuperable
 	 * 
 	 * @param nombre
@@ -52,11 +52,13 @@ public class Usuario extends Bean<Usuario> {
 	public void setPassword(@NotBlank @Size(min = 1, max = 50) String password) {
 		validatePassword = Utilidades.validarMetodo(this, "setPassword", new Class<?>[] { String.class }, password);
 
-		this.password = Utilidades.getMd5(password);
+		// this.password = Utilidades.getMd5(password);
+		this.password = password;
 	}
 
 	public boolean esCorrecto(String otraPass) {
-		return this.password.equals(Utilidades.getMd5(otraPass));
+		// return this.password.equals(Utilidades.getMd5(otraPass));
+		return this.password.equals(otraPass);
 	}
 
 	public String getId() {

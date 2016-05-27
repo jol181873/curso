@@ -16,9 +16,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import modelo.peluqueria.NegocioPeluqueria;
-import modelo.peluqueria.Peluqueria;
-
 public class Utilidades {
 	private static final Logger log = LogManager.getLogger(Utilidades.class);
 	private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
@@ -33,7 +30,7 @@ public class Utilidades {
 			}
 			return real;
 		} catch (Exception ex) {
-			log.error("Número no válido");
+			log.error("Nï¿½mero no vï¿½lido");
 			log.error(ex.getMessage());
 			log.catching(Level.ERROR, ex);
 
@@ -52,7 +49,7 @@ public class Utilidades {
 			return entero;
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			log.error("Número no válido");
+			log.error("Nï¿½mero no vï¿½lido");
 			log.error(ex.getMessage());
 			log.catching(Level.ERROR, ex);
 
@@ -98,9 +95,11 @@ public class Utilidades {
 		// NegocioUsuario neg = NegocioUsuario.getInstance();
 		// neg.insertarObjeto(neg.getConn(), usuario);
 
-		Peluqueria pelu = new Peluqueria("Peluquería excelente", "Calle de los peluqueros, 56", "123456");
-		NegocioPeluqueria.getInstance().conectar();
-		NegocioPeluqueria.getInstance().insertarObjeto(NegocioPeluqueria.getInstance().getConnection(), pelu);
+		// Peluqueria pelu = new Peluqueria("Peluquerï¿½a excelente", "Calle de
+		// los peluqueros, 56", "123456");
+		// NegocioPeluqueria.getInstance().conectar();
+		// NegocioPeluqueria.getInstance().insertarObjeto(NegocioPeluqueria.getInstance().getConnection(),
+		// pelu);
 
 	}
 

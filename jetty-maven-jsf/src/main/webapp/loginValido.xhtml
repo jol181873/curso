@@ -300,18 +300,18 @@
 			
 			<h:form id="miform" prependId="false">    		    
 			    <p:dataTable id="pelus" var="pelu" value="#{controladorPelus.lista}" widgetVar="pelusTable" filteredValue="#{controladorPelus.pelusFiltradas}" emptyMessage="No hay registros" paginator="true" resizableColumns="true" rows="14" paginatorPosition="bottom">                    
-			        <p:column filterBy="#{pelu.nombre}" headerText="Nombre" filterMatchMode="contains">			            
-			            <h:outputText value="#{pelu.nombre}" />
+			        <p:column filterBy="#{pelu.peluNombre}" headerText="Nombre" filterMatchMode="contains">			            
+			            <h:outputText value="#{pelu.peluNombre}" />
 			        </p:column>
-			        <p:column filterBy="#{pelu.direccion}" headerText="Dirección" filterMatchMode="contains">			            
-			            <h:outputText value="#{pelu.direccion}" />
+			        <p:column filterBy="#{pelu.peluDireccion}" headerText="Dirección" filterMatchMode="contains">			            
+			            <h:outputText value="#{pelu.peluDireccion}" />
 			        </p:column>
-			        <p:column filterBy="#{pelu.telefono}" headerText="telefono" filterMatchMode="contains">
-			            <h:outputText value="#{pelu.telefono}" />
+			        <p:column filterBy="#{pelu.peluTelefono}" headerText="telefono" filterMatchMode="contains">
+			            <h:outputText value="#{pelu.peluTelefono}" />
 			        </p:column>
 			        <p:column>
 			            <h:commandButton class="botonBorrar" action="#{controladorPelus.borrar}" value="borrar">
-			            	<f:param name="codigoPelu" value="#{pelu.id}"></f:param>
+			            	<f:param name="codigoPelu" value="#{pelu.peluId}"></f:param>
 			            </h:commandButton>
 			            
 			            <input type="button" value="xxxx" onclick="$('#dialogoBorrar').dialog('open');"></input>

@@ -9,10 +9,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+
+import model.Peluqueria;
 import modelo.BD;
 
 public class NegocioPeluqueria extends BD<Peluqueria> {
 	private static NegocioPeluqueria instancia;
+
+	@PersistenceContext
+	private EntityManager em = Persistence.createEntityManagerFactory("jol.pelus.mascotas").createEntityManager();
 
 	private Connection conn = null;
 
@@ -55,12 +63,21 @@ public class NegocioPeluqueria extends BD<Peluqueria> {
 
 	@Override
 	public Peluqueria obtenerObjeto(Connection conn, String consulta, String... parametros) throws SQLException {
-		return super.obtenerObjeto(conn, consulta, parametros);
+		// return super.obtenerObjeto(conn, consulta, parametros);
+
+		return this.em.find(Peluqueria.class, Long.valueOf(parametros[0]));
 	}
 
 	@Override
 	public List<Peluqueria> obtenerListaObjetos(Connection conn, String consulta) throws SQLException {
-		return super.obtenerListaObjetos(conn, consulta);
+		// return super.obtenerListaObjetos(conn, consulta);
+
+		List<Peluqueria> lista = this.em
+				.createQuery("SELECT pelu FROM Peluqueria pelu ORDER BY pelu.peluNombre", Peluqueria.class)
+				.getResultList();
+		// em.close();
+		return lista;
+
 	}
 
 	/**
@@ -90,47 +107,37 @@ public class NegocioPeluqueria extends BD<Peluqueria> {
 
 	@Override
 	public void insertarObjeto(Connection conn, Peluqueria objeto) throws SQLException {
-		PreparedStatement st = null;
-		try {
-			st = conn.prepareStatement(
-					"INSERT INTO PELUQUERIA(PELU_ID,PELU_NOMBRE,PELU_DIRECCION,PELU_TELEFONO) VALUES(?,?,?,?)");
-			st.setString(1, String.valueOf(getIdSecuencia()));
-			st.setString(2, objeto.getNombre());
-			st.setString(3, objeto.getDireccion());
-			st.setString(4, objeto.getTelefono());
+		/*
+		 * PreparedStatement st = null; try { st = conn.prepareStatement(
+		 * "INSERT INTO PELUQUERIA(PELU_ID,PELU_NOMBRE,PELU_DIRECCION,PELU_TELEFONO) VALUES(?,?,?,?)"
+		 * ); st.setString(1, String.valueOf(getIdSecuencia())); st.setString(2,
+		 * objeto.getPeluNombre()); st.setString(3, objeto.getPeluDireccion());
+		 * st.setString(4, objeto.getPeluTelefono());
+		 * 
+		 * int executeUpdate = st.executeUpdate(); } finally { try { st.close();
+		 * conn.close(); } catch (SQLException e) { throw new
+		 * RuntimeException(e); } }
+		 */
 
-			int executeUpdate = st.executeUpdate();
-		} finally {
-			try {
-				st.close();
-				conn.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
-		}
+		this.em.persist(objeto);
+
 	}
 
 	@Override
 	public void modificarObjeto(Connection conn, Peluqueria objeto) throws SQLException {
-		PreparedStatement st = null;
-		try {
-			st = conn.prepareStatement(
-					"UPDATE PELUQUERIA SET PELU_NOMBRE=?,PELU_DIRECCION=?,PELU_TELEFONO=? WHERE PELU_ID=?");
-			st.setString(1, objeto.getNombre());
-			st.setString(2, objeto.getDireccion());
-			st.setString(3, objeto.getTelefono());
-			st.setString(4, objeto.getId());
+		/*
+		 * PreparedStatement st = null; try { st = conn.prepareStatement(
+		 * "UPDATE PELUQUERIA SET PELU_NOMBRE=?,PELU_DIRECCION=?,PELU_TELEFONO=? WHERE PELU_ID=?"
+		 * ); st.setString(1, objeto.getPeluNombre()); st.setString(2,
+		 * objeto.getPeluDireccion()); st.setString(3,
+		 * objeto.getPeluTelefono()); st.setLong(4, objeto.getPeluId());
+		 * 
+		 * int executeUpdate = st.executeUpdate(); } finally { try { st.close();
+		 * conn.close(); } catch (SQLException e) { throw new
+		 * RuntimeException(e); } }
+		 */
 
-			int executeUpdate = st.executeUpdate();
-		} finally {
-			try {
-				st.close();
-				conn.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
-		}
-
+		this.em.merge(objeto);
 	}
 
 	@Override
@@ -140,10 +147,10 @@ public class NegocioPeluqueria extends BD<Peluqueria> {
 			st = conn.prepareStatement(
 					"UPDATE PELUQUERIA SET PELU_NOMBRE=?,PELU_DIRECCION=?,PELU_TELEFONO=? WHERE PELU_ID=?");
 			for (Peluqueria objeto : listaObjetos) {
-				st.setString(1, objeto.getNombre());
-				st.setString(2, objeto.getDireccion());
-				st.setString(3, objeto.getTelefono());
-				st.setString(4, objeto.getId());
+				st.setString(1, objeto.getPeluNombre());
+				st.setString(2, objeto.getPeluDireccion());
+				st.setString(3, objeto.getPeluTelefono());
+				st.setLong(4, objeto.getPeluId());
 
 				int executeUpdate = st.executeUpdate();
 			}
@@ -161,20 +168,17 @@ public class NegocioPeluqueria extends BD<Peluqueria> {
 
 	@Override
 	public void borrarObjeto(Connection conn, Peluqueria objeto) throws SQLException {
-		PreparedStatement st = null;
-		try {
-			st = conn.prepareStatement("DELETE PELUQUERIA WHERE PELU_ID=?");
-			st.setString(1, objeto.getId());
+		/*
+		 * PreparedStatement st = null; try { st = conn.prepareStatement(
+		 * "DELETE PELUQUERIA WHERE PELU_ID=?"); st.setLong(1,
+		 * objeto.getPeluId());
+		 * 
+		 * int executeUpdate = st.executeUpdate(); } finally { try { st.close();
+		 * conn.close(); } catch (SQLException e) { throw new
+		 * RuntimeException(e); } }
+		 */
 
-			int executeUpdate = st.executeUpdate();
-		} finally {
-			try {
-				st.close();
-				conn.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
-		}
+		this.em.remove(objeto);
 	}
 
 	// ================================================================================================
@@ -193,10 +197,10 @@ public class NegocioPeluqueria extends BD<Peluqueria> {
 	@Override
 	protected Peluqueria construirObjeto(ResultSet rs) throws SQLException {
 		Peluqueria peluqueria = new Peluqueria();
-		peluqueria.setId(rs.getString("PELU_ID"));
-		peluqueria.setNombre(rs.getString("PELU_NOMBRE"));
-		peluqueria.setDireccion(rs.getString("PELU_DIRECCION"));
-		peluqueria.setTelefono(rs.getString("PELU_TELEFONO"));
+		peluqueria.setPeluId(rs.getLong("PELU_ID"));
+		peluqueria.setPeluNombre(rs.getString("PELU_NOMBRE"));
+		peluqueria.setPeluDireccion(rs.getString("PELU_DIRECCION"));
+		peluqueria.setPeluTelefono(rs.getString("PELU_TELEFONO"));
 
 		return peluqueria;
 	}
