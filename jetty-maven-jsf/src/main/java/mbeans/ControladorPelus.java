@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import model.Peluqueria;
 import modelo.peluqueria.NegocioPeluqueria;
@@ -45,20 +46,21 @@ public class ControladorPelus {
 	}
 
 	public String borrar() {
-		/*
-		 * try { String codigPelu =
-		 * FacesContext.getCurrentInstance().getExternalContext().
-		 * getRequestParameterMap() .get("codigoPelu");
-		 * 
-		 * NegocioPeluqueria neg = NegocioPeluqueria.getInstance();
-		 * System.out.println("sdfvgsgsfgsgsgsgfgsfgf");
-		 * 
-		 * Peluqueria pelu = new Peluqueria();
-		 * pelu.setPeluId(Long.valueOf(codigPelu)); neg.conectar();
-		 * neg.borrarObjeto(neg.getConnection(), pelu);
-		 * 
-		 * } catch (Exception ex) { ex.printStackTrace(); }
-		 */
+		try {
+			String codigPelu = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
+					.get("codigoPelu");
+
+			NegocioPeluqueria neg = NegocioPeluqueria.getInstance();
+
+			for (Peluqueria pelu : lista) {
+				if (pelu.getPeluId() == Long.valueOf(codigPelu)) {
+					neg.borrarObjeto(neg.getConnection(), pelu);
+					break;
+				}
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 
 		return "loginValido";
 	}

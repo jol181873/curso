@@ -167,6 +167,7 @@ public class NegocioPeluqueria extends BD<Peluqueria> {
 	}
 
 	@Override
+
 	public void borrarObjeto(Connection conn, Peluqueria objeto) throws SQLException {
 		/*
 		 * PreparedStatement st = null; try { st = conn.prepareStatement(
@@ -178,7 +179,9 @@ public class NegocioPeluqueria extends BD<Peluqueria> {
 		 * RuntimeException(e); } }
 		 */
 
+		em.getTransaction().begin();
 		this.em.remove(objeto);
+		em.getTransaction().commit();
 	}
 
 	// ================================================================================================
