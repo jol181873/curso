@@ -93,7 +93,7 @@ public class RepoUsuarioJDBC extends BdJDBC<UsuarioDTO> implements RepoUsuarioI 
 			st = conn.prepareStatement("UPDATE USUARIO SET USUA_PASSWORD=? WHERE USUA_ID=?");
 			for (UsuarioDTO objeto : listaObjetos) {
 				st.setString(1, objeto.getPassword());
-				st.setString(2, objeto.getId());
+				st.setLong(2, objeto.getId());
 
 				int executeUpdate = st.executeUpdate();
 			}
@@ -113,7 +113,7 @@ public class RepoUsuarioJDBC extends BdJDBC<UsuarioDTO> implements RepoUsuarioI 
 		try {
 			st = conn.prepareStatement("UPDATE USUARIO SET USUA_PASSWORD=? WHERE USUA_ID=?");
 			st.setString(1, objeto.getPassword());
-			st.setString(2, objeto.getId());
+			st.setLong(2, objeto.getId());
 
 			int executeUpdate = st.executeUpdate();
 		} finally {
@@ -131,7 +131,7 @@ public class RepoUsuarioJDBC extends BdJDBC<UsuarioDTO> implements RepoUsuarioI 
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement("DELETE USUARIO WHERE USUA_ID=?");
-			st.setString(1, objeto.getId());
+			st.setLong(1, objeto.getId());
 
 			int executeUpdate = st.executeUpdate();
 		} finally {

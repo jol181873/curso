@@ -24,7 +24,7 @@ public class RepoPeluqueriaJDBC extends BdJDBC<PeluqueriaDTO> implements RepoPel
 
 	private Connection conn = null;
 
-	private RepoPeluqueriaJDBC() {
+	public RepoPeluqueriaJDBC() {
 		try {
 			Class.forName("org.h2.Driver");
 		} catch (ClassNotFoundException e) {

@@ -15,7 +15,7 @@ import org.jsf.jol181873.util.Utilidades;
 public class UsuarioDTO extends Bean<UsuarioDTO> {
 	private Set<ConstraintViolation<UsuarioDTO>> validatePassword;
 
-	private String id;
+	private long id;
 
 	@NotBlank
 	@Size(min = 1, max = 50)
@@ -63,11 +63,11 @@ public class UsuarioDTO extends Bean<UsuarioDTO> {
 		return this.password.equals(otraPass);
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

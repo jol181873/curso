@@ -2,17 +2,17 @@ package org.jsf.jol181873.servicio;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-//import javax.annotation.ManagedBean;
-//import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.jsf.jol181873.modelo.dto.PeluqueriaDTO;
+import org.jsf.jol181873.repositorio.RepoPeluqueriaI;
 import org.jsf.jol181873.repositorio.jpa.RepoPeluqueriaJPA;
 
-@ManagedBean
 @RequestScoped
+@Named
 public class ControladorPelus {
 
 	private List<PeluqueriaDTO> lista;
@@ -21,7 +21,9 @@ public class ControladorPelus {
 
 	private String filtroNombre;
 
-	RepoPeluqueriaJPA repoPeluqueriaJPA;
+	@Inject
+	@Named("repoPeluqueriaJPA")
+	RepoPeluqueriaI repoPeluqueriaJPA;
 
 	public String getObtenerPelus() {
 		RepoPeluqueriaJPA neg = RepoPeluqueriaJPA.getInstance();

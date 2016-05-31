@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.jsf.jol181873.modelo.dto.UsuarioDTO;
-import org.jsf.jol181873.repositorio.jdbc.RepoUsuarioJDBC;
+import org.jsf.jol181873.repositorio.RepoUsuarioI;
 
 @RequestScoped
 @Named
@@ -20,10 +20,10 @@ public class Login implements Serializable {
 
 	@Inject
 	@Named("repoUsuarioJDBC")
-	private RepoUsuarioJDBC repoUsuarioJDBC;
+	private RepoUsuarioI repoUsuario;
 
 	public String login(String nombre, String pass) {
-		UsuarioDTO usuarioLogueado = repoUsuarioJDBC.obtenerObjeto(getUsuario());
+		UsuarioDTO usuarioLogueado = repoUsuario.obtenerObjeto(getUsuario());
 
 		if (usuarioLogueado == null) {
 			// no es un nombre de usuario correcto
