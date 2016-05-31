@@ -2,12 +2,16 @@ package org.jsf.jol181873.modelo.dto;
 
 import java.util.Set;
 
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import javax.validation.ConstraintViolation;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.jsf.jol181873.util.Utilidades;
 
+@ManagedBean
+@ApplicationScoped
 public class UsuarioDTO extends Bean<UsuarioDTO> {
 	private Set<ConstraintViolation<UsuarioDTO>> validatePassword;
 

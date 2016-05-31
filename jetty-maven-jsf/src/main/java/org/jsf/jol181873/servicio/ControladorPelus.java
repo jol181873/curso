@@ -2,15 +2,17 @@ package org.jsf.jol181873.servicio;
 
 import java.util.List;
 
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+//import javax.annotation.ManagedBean;
+//import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
 
 import org.jsf.jol181873.modelo.dto.PeluqueriaDTO;
 import org.jsf.jol181873.repositorio.jpa.RepoPeluqueriaJPA;
 
 @ManagedBean
-@ApplicationScoped
+@RequestScoped
 public class ControladorPelus {
 
 	private List<PeluqueriaDTO> lista;

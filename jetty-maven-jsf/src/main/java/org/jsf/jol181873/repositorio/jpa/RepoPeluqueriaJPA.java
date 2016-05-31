@@ -2,6 +2,8 @@ package org.jsf.jol181873.repositorio.jpa;
 
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
@@ -9,9 +11,11 @@ import javax.persistence.PersistenceContext;
 import org.jsf.jol181873.modelo.dto.PeluqueriaDTO;
 import org.jsf.jol181873.modelo.jpa.Peluqueria;
 import org.jsf.jol181873.repositorio.AdaptadorPelu;
-import org.jsf.jol181873.repositorio.RepoAbstracto;
+import org.jsf.jol181873.repositorio.RepoPeluqueriaI;
 
-public class RepoPeluqueriaJPA implements RepoAbstracto<PeluqueriaDTO> {
+@Named("repoPeluqueriaJPA")
+@ApplicationScoped
+public class RepoPeluqueriaJPA implements RepoPeluqueriaI {
 	private static RepoPeluqueriaJPA instancia;
 
 	@PersistenceContext
@@ -35,8 +39,8 @@ public class RepoPeluqueriaJPA implements RepoAbstracto<PeluqueriaDTO> {
 	// ================================================================================================
 
 	@Override
-	public PeluqueriaDTO obtenerObjeto(Long id) {
-		Peluqueria pelu = this.em.find(Peluqueria.class, id);
+	public PeluqueriaDTO obtenerObjeto(PeluqueriaDTO objeto) {
+		Peluqueria pelu = this.em.find(Peluqueria.class, objeto.getPeluId());
 
 		return adaptador.getDtoDeObjeto(pelu);
 	}

@@ -78,12 +78,12 @@
 
 			<div class="anchura150px">Nombre usuario:</div>
 			<div class="anchura-100-porcentaje">
-				<h:inputText id="username" value="#{login.nombreUsuario}" />
+				<h:inputText id="username" value="#{login.usuario.nombre}" />
 			</div>
 			<h:message for="username" errorStyle="color: red" infoStyle="color: green" />
 
 			<div class="anchura150px padding-top10px">Password:</div>
-			<h:inputSecret id="password" class="" value="#{login.password}" />
+			<h:inputSecret id="password" class="" value="#{login.usuario.password}" />
 			<div class="anchura-100-porcentaje">
 				<h:message for="password" errorStyle="color: red" infoStyle="color: green" />
 			</div>

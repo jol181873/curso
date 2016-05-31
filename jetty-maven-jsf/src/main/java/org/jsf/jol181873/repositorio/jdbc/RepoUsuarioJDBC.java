@@ -8,14 +8,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsf.jol181873.modelo.dto.UsuarioDTO;
-import org.jsf.jol181873.repositorio.jdbc.BdJDBC;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 
-public class RepoUsuarioJDBC extends BdJDBC<UsuarioDTO> {
+import org.jsf.jol181873.modelo.dto.UsuarioDTO;
+import org.jsf.jol181873.repositorio.RepoUsuarioI;
+
+@Named("repoUsuarioJDBC")
+@ApplicationScoped
+public class RepoUsuarioJDBC extends BdJDBC<UsuarioDTO> implements RepoUsuarioI {
 	private static RepoUsuarioJDBC instancia;
 	private Connection conn = null;
 
-	private RepoUsuarioJDBC() {
+	public RepoUsuarioJDBC() {
 		try {
 			Class.forName("org.h2.Driver");
 		} catch (ClassNotFoundException e) {
@@ -180,6 +185,73 @@ public class RepoUsuarioJDBC extends BdJDBC<UsuarioDTO> {
 
 	public void setConnection(Connection conn) {
 		this.conn = conn;
+	}
+
+	// =====
+	// REPO=====================================================================
+	// =====
+	// REPO=====================================================================
+	// =====
+	// REPO=====================================================================
+
+	@Override
+	public UsuarioDTO obtenerObjeto(UsuarioDTO objeto) {
+		try {
+			this.conectar();
+
+			return super.obtenerObjeto(this.conn,
+					"SELECT * FROM USUARIO WHERE USUA_NOMBRE='" + objeto.getNombre() + "'");
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Override
+	public List<UsuarioDTO> obtenerTodoLosObjetos() {
+		try {
+			this.conectar();
+
+			return findAll(conn);
+		} catch (SQLException e) {
+
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Override
+	public void insertarObjeto(UsuarioDTO objeto) {
+		try {
+			this.conectar();
+
+			this.insertarObjeto(conn, objeto);
+		} catch (SQLException e) {
+
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Override
+	public void modificarObjeto(UsuarioDTO objeto) {
+		try {
+			this.conectar();
+
+			this.modificarObjeto(conn, objeto);
+		} catch (SQLException e) {
+
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Override
+	public void borrarObjeto(UsuarioDTO objeto) {
+		try {
+			this.conectar();
+
+			this.borrarObjeto(conn, objeto);
+		} catch (SQLException e) {
+
+			throw new RuntimeException(e);
+		}
 	}
 
 	// ================================================================================================

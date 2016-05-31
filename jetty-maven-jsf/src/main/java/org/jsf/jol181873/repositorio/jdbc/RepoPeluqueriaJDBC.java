@@ -14,9 +14,9 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import org.jsf.jol181873.modelo.dto.PeluqueriaDTO;
-import org.jsf.jol181873.repositorio.RepoAbstracto;
+import org.jsf.jol181873.repositorio.RepoPeluqueriaI;
 
-public class RepoPeluqueriaJDBC extends BdJDBC<PeluqueriaDTO> implements RepoAbstracto<PeluqueriaDTO> {
+public class RepoPeluqueriaJDBC extends BdJDBC<PeluqueriaDTO> implements RepoPeluqueriaI {
 	private static RepoPeluqueriaJDBC instancia;
 
 	@PersistenceContext
@@ -229,16 +229,16 @@ public class RepoPeluqueriaJDBC extends BdJDBC<PeluqueriaDTO> implements RepoAbs
 	public void setConnection(Connection conn) {
 		this.conn = conn;
 	}
-	// ================================================================================================
-	// ================================================================================================
-	// ================================================================================================
+	// ====REPO========================================================================================
+	// ====REPO========================================================================================
+	// ====REPO========================================================================================
 
 	@Override
-	public PeluqueriaDTO obtenerObjeto(Long id) {
+	public PeluqueriaDTO obtenerObjeto(PeluqueriaDTO objeto) {
 		try {
 			this.conectar();
 
-			return super.obtenerObjeto(this.conn, "SELECT * FROM PELUQUERIA WHERE PELU_ID=" + id);
+			return super.obtenerObjeto(this.conn, "SELECT * FROM PELUQUERIA WHERE PELU_ID=" + objeto.getPeluId());
 		} catch (SQLException e) {
 
 			throw new RuntimeException(e);
