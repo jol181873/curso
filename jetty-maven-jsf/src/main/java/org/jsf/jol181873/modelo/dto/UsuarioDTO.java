@@ -1,4 +1,4 @@
-package modelo.usuario;
+package org.jsf.jol181873.modelo.dto;
 
 import java.util.Set;
 
@@ -6,12 +6,10 @@ import javax.validation.ConstraintViolation;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.jsf.jol181873.util.Utilidades;
 
-import modelo.Bean;
-import utilidades.Utilidades;
-
-public class Usuario extends Bean<Usuario> {
-	private Set<ConstraintViolation<Usuario>> validatePassword;
+public class UsuarioDTO extends Bean<UsuarioDTO> {
+	private Set<ConstraintViolation<UsuarioDTO>> validatePassword;
 
 	private String id;
 
@@ -21,11 +19,11 @@ public class Usuario extends Bean<Usuario> {
 
 	private String password;
 
-	public Usuario() {
+	public UsuarioDTO() {
 
 	}
 
-	public Usuario(String nombr, String password) {
+	public UsuarioDTO(String nombr, String password) {
 		this.nombre = nombr;
 		this.setPassword(password);
 	}
@@ -70,8 +68,8 @@ public class Usuario extends Bean<Usuario> {
 	}
 
 	@Override
-	public Set<ConstraintViolation<Usuario>> validar() {
-		Set<ConstraintViolation<Usuario>> constraintViolations = super.validar();
+	public Set<ConstraintViolation<UsuarioDTO>> validar() {
+		Set<ConstraintViolation<UsuarioDTO>> constraintViolations = super.validar();
 		constraintViolations.addAll(validatePassword);
 
 		logErroresValidacion(validatePassword, METODOS);

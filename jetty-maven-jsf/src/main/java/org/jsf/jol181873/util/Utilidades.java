@@ -1,7 +1,6 @@
-package utilidades;
+package org.jsf.jol181873.util;
 
 import java.security.MessageDigest;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -88,24 +87,6 @@ public class Utilidades {
 			return null;
 		}
 	}
-
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-
-		// Usuario usuario = new Usuario("admin", "admin");
-		// NegocioUsuario neg = NegocioUsuario.getInstance();
-		// neg.insertarObjeto(neg.getConn(), usuario);
-
-		// Peluqueria pelu = new Peluqueria("Peluquer�a excelente", "Calle de
-		// los peluqueros, 56", "123456");
-		// NegocioPeluqueria.getInstance().conectar();
-		// NegocioPeluqueria.getInstance().insertarObjeto(NegocioPeluqueria.getInstance().getConnection(),
-		// pelu);
-
-	}
-
-	// public static <T> Set<ConstraintViolation<T>> validarMetodo(T clase,
-	// String nombreMetodo,
-	// Class<Object>[] tiposParametros, Object... parametros) {
 
 	public static <T> Set<ConstraintViolation<T>> validarMetodo(T clase, String nombreMetodo,
 			Class<?>[] tiposParametros, Object... parametros) {

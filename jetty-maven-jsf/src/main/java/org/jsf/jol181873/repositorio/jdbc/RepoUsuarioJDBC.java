@@ -1,4 +1,4 @@
-package modelo.usuario;
+package org.jsf.jol181873.repositorio.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,13 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.BD;
+import org.jsf.jol181873.modelo.dto.UsuarioDTO;
+import org.jsf.jol181873.repositorio.jdbc.BdJDBC;
 
-public class NegocioUsuario extends BD<Usuario> {
-	private static NegocioUsuario instancia;
+public class RepoUsuarioJDBC extends BdJDBC<UsuarioDTO> {
+	private static RepoUsuarioJDBC instancia;
 	private Connection conn = null;
 
-	private NegocioUsuario() {
+	private RepoUsuarioJDBC() {
 		try {
 			Class.forName("org.h2.Driver");
 		} catch (ClassNotFoundException e) {
@@ -25,9 +26,9 @@ public class NegocioUsuario extends BD<Usuario> {
 		consulta_findLike = "SELECT * FROM USUARIO WHERE ";
 	}
 
-	public static NegocioUsuario getInstance() {
+	public static RepoUsuarioJDBC getInstance() {
 		if (instancia == null) {
-			instancia = new NegocioUsuario();
+			instancia = new RepoUsuarioJDBC();
 		}
 
 		return instancia;
@@ -47,22 +48,22 @@ public class NegocioUsuario extends BD<Usuario> {
 	}
 
 	@Override
-	public Usuario obtenerObjeto(Connection conn, String consulta) throws SQLException {
+	public UsuarioDTO obtenerObjeto(Connection conn, String consulta) throws SQLException {
 		return super.obtenerObjeto(conn, consulta);
 	}
 
 	@Override
-	public Usuario obtenerObjeto(Connection conn, String consulta, String... parametros) throws SQLException {
+	public UsuarioDTO obtenerObjeto(Connection conn, String consulta, String... parametros) throws SQLException {
 		return super.obtenerObjeto(conn, consulta, parametros);
 	}
 
 	@Override
-	public List<Usuario> obtenerListaObjetos(Connection conn, String consulta) throws SQLException {
+	public List<UsuarioDTO> obtenerListaObjetos(Connection conn, String consulta) throws SQLException {
 		return super.obtenerListaObjetos(conn, consulta);
 	}
 
 	@Override
-	public void insertarObjeto(Connection conn, Usuario objeto) throws SQLException {
+	public void insertarObjeto(Connection conn, UsuarioDTO objeto) throws SQLException {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement("INSERT INTO USUARIO(USUA_NOMBRE,USUA_PASSWORD) VALUES(?,?)");
@@ -81,11 +82,11 @@ public class NegocioUsuario extends BD<Usuario> {
 	}
 
 	@Override
-	public void modificarListaObjetos(Connection conn, List<Usuario> listaObjetos) throws SQLException {
+	public void modificarListaObjetos(Connection conn, List<UsuarioDTO> listaObjetos) throws SQLException {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement("UPDATE USUARIO SET USUA_PASSWORD=? WHERE USUA_ID=?");
-			for (Usuario objeto : listaObjetos) {
+			for (UsuarioDTO objeto : listaObjetos) {
 				st.setString(1, objeto.getPassword());
 				st.setString(2, objeto.getId());
 
@@ -102,7 +103,7 @@ public class NegocioUsuario extends BD<Usuario> {
 	}
 
 	@Override
-	public void modificarObjeto(Connection conn, Usuario objeto) throws SQLException {
+	public void modificarObjeto(Connection conn, UsuarioDTO objeto) throws SQLException {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement("UPDATE USUARIO SET USUA_PASSWORD=? WHERE USUA_ID=?");
@@ -121,7 +122,7 @@ public class NegocioUsuario extends BD<Usuario> {
 	}
 
 	@Override
-	public void borrarObjeto(Connection conn, Usuario objeto) throws SQLException {
+	public void borrarObjeto(Connection conn, UsuarioDTO objeto) throws SQLException {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement("DELETE USUARIO WHERE USUA_ID=?");
@@ -143,7 +144,7 @@ public class NegocioUsuario extends BD<Usuario> {
 	// ================================================================================================
 
 	@Override
-	protected Usuario tratarResultSet(ResultSet rs) throws SQLException {
+	protected UsuarioDTO tratarResultSet(ResultSet rs) throws SQLException {
 		if (rs.next()) {
 			return construirObjeto(rs);
 		} else {
@@ -152,8 +153,8 @@ public class NegocioUsuario extends BD<Usuario> {
 	}
 
 	@Override
-	protected Usuario construirObjeto(ResultSet rs) throws SQLException {
-		Usuario usuario = new Usuario();
+	protected UsuarioDTO construirObjeto(ResultSet rs) throws SQLException {
+		UsuarioDTO usuario = new UsuarioDTO();
 		usuario.setNombre(rs.getString("USUA_NOMBRE"));
 		usuario.setPassword(rs.getString("USUA_PASSWORD"));
 
@@ -161,11 +162,11 @@ public class NegocioUsuario extends BD<Usuario> {
 	}
 
 	@Override
-	protected List<Usuario> tratarListaResultSet(ResultSet rs) throws SQLException {
-		ArrayList<Usuario> lista = new ArrayList<Usuario>();
+	protected List<UsuarioDTO> tratarListaResultSet(ResultSet rs) throws SQLException {
+		ArrayList<UsuarioDTO> lista = new ArrayList<UsuarioDTO>();
 
 		while (rs.next()) {
-			Usuario usuario = construirObjeto(rs);
+			UsuarioDTO usuario = construirObjeto(rs);
 
 			lista.add(usuario);
 		}

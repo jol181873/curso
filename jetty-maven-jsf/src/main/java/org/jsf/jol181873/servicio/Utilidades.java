@@ -1,15 +1,15 @@
-package mbeans;
+package org.jsf.jol181873.servicio;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 
-@ManagedBean(name = "utilidades", eager = true)
+@ManagedBean
 @SessionScoped
 public class Utilidades implements Serializable {
 	public void cerrarSesion(ActionEvent ae) {
@@ -20,7 +20,6 @@ public class Utilidades implements Serializable {
 		try {
 			FacesContext.getCurrentInstance().getExternalContext().redirect("hello.xhtml");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

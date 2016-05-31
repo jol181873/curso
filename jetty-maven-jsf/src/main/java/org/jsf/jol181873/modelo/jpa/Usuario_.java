@@ -1,4 +1,4 @@
-package model;
+package org.jsf.jol181873.modelo.jpa;
 
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;

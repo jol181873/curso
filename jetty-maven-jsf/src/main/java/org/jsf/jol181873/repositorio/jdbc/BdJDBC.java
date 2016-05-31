@@ -1,4 +1,4 @@
-package modelo;
+package org.jsf.jol181873.repositorio.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,8 +12,8 @@ import java.util.Map.Entry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public abstract class BD<T> {
-	private static final Logger log = LogManager.getLogger(BD.class);
+public abstract class BdJDBC<T> {
+	private static final Logger log = LogManager.getLogger(BdJDBC.class);
 
 	protected String consulta_findAll;
 	protected String consulta_findLike;
@@ -188,4 +188,5 @@ public abstract class BD<T> {
 	protected abstract List<T> tratarListaResultSet(ResultSet rs) throws SQLException;
 
 	protected abstract T construirObjeto(ResultSet rs) throws SQLException;
+
 }

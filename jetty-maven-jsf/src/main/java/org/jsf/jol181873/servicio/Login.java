@@ -1,20 +1,19 @@
-package mbeans;
+package org.jsf.jol181873.servicio;
 
 import java.io.Serializable;
 import java.sql.SQLException;
 
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.jsf.jol181873.modelo.dto.UsuarioDTO;
+import org.jsf.jol181873.repositorio.jdbc.RepoUsuarioJDBC;
 
-import modelo.usuario.NegocioUsuario;
-import modelo.usuario.Usuario;
-
-@ManagedBean(name = "login", eager = true)
+@ManagedBean
 @SessionScoped
 public class Login implements Serializable {
 	private String nombreUsuario;
@@ -41,13 +40,13 @@ public class Login implements Serializable {
 	}
 
 	public String login() {
-		Usuario usuario = new Usuario(nombreUsuario, password);
+		UsuarioDTO usuario = new UsuarioDTO(nombreUsuario, password);
 
 		try {
-			NegocioUsuario negocioUsuario = NegocioUsuario.getInstance();
+			RepoUsuarioJDBC negocioUsuario = RepoUsuarioJDBC.getInstance();
 
 			negocioUsuario.conectar();
-			Usuario usuarioLogueado = negocioUsuario.obtenerObjeto(negocioUsuario.getConnection(),
+			UsuarioDTO usuarioLogueado = negocioUsuario.obtenerObjeto(negocioUsuario.getConnection(),
 					"SELECT * FROM USUARIO WHERE USUA_NOMBRE=?", nombreUsuario);
 
 			if (usuarioLogueado == null) {

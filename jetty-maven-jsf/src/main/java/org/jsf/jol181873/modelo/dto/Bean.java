@@ -1,4 +1,4 @@
-package modelo;
+package org.jsf.jol181873.modelo.dto;
 
 import java.util.Set;
 
@@ -17,7 +17,6 @@ public class Bean<T> {
 
 	public Set<ConstraintViolation<T>> validar() {
 		Set<ConstraintViolation<T>> constraintViolations = validator.validate((T) this);
-
 		logErroresValidacion(constraintViolations, ATRIBUTOS);
 
 		return constraintViolations;

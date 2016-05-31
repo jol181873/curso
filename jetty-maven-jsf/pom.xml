@@ -14,6 +14,7 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
@@ -25,13 +26,23 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>2.1.7</version>
 		</dependency>
-
-		<dependency>
+  
+  		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
+		-->
+		
+		 <!--  <dependency>
+		      <groupId>javax.servlet</groupId>
+		      <artifactId>jstl</artifactId>
+		      <version>1.2</version>
+		</dependency>
+		-->
+		
+	
 
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -44,26 +55,29 @@
 			<version>2.5</version>
 		</dependency>
 
-		<dependency>
+	<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.2.4.Final</version>
 		</dependency>
-		<dependency>
+	
+		  <dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>javax.el-api</artifactId>
 			<version>2.2.4</version>
 		</dependency>
-		<dependency>
+		 <dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>javax.el</artifactId>
 			<version>2.2.4</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator-cdi</artifactId>
 			<version>5.2.4.Final</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -82,6 +96,111 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.1.0.Final</version>
 		</dependency>
+		
+		
+		
+		
+		
+<!-- 		<dependency>
+		<groupId>javax.enterprise</groupId>
+		<artifactId>cdi-api</artifactId>
+		<version>1.2</version>
+	</dependency>
+	-->
+  	  <!-- <dependency>
+		<groupId>org.jboss.weld.servlet</groupId>
+		<artifactId>weld-servlet</artifactId>
+		<version>2.2.13.Final</version>
+	</dependency>
+	-->
+	
+	
+	
+
+	
+<!-- 	<dependency>
+		<groupId>org.glassfish.web</groupId>
+		<artifactId>el-impl</artifactId>
+		<version>2.2</version>
+	</dependency>
+	-->
+<!-- 	<dependency>
+		<groupId>javax.faces</groupId>
+		<artifactId>jsf-api</artifactId>
+		<version>2.1</version>
+	</dependency>
+	-->
+<!-- 	<dependency>
+		<groupId>org.glassfish</groupId>
+		<artifactId>javax.faces</artifactId>
+		<version>2.2.11</version>
+	</dependency>
+	-->
+<!--  	  <dependency>
+		<groupId>javax.ejb</groupId>
+		<artifactId>javax.ejb-api</artifactId>
+		<version>3.2</version>
+	</dependency>
+	-->
+
+
+<dependency>
+  <!-- Provided by Tomcat, but needed for compilation -->
+  <groupId>javax</groupId>
+  <artifactId>javaee-web-api</artifactId>
+  <version>7.0</version>
+  <scope>provided</scope>
+</dependency>
+
+<dependency>
+  <groupId>javax.enterprise</groupId>
+  <artifactId>cdi-api</artifactId>
+  <version>1.2</version>
+  <scope>provided</scope>
+</dependency>
+
+<!--  <dependency>
+  
+  <groupId>org.jboss.weld.servlet</groupId>
+  <artifactId>weld-servlet</artifactId>
+  <version>2.2.6.Final</version>
+  <scope>runtime</scope>
+</dependency>
+-->
+
+
+<dependency>
+		<groupId>org.jboss.weld.servlet</groupId>
+		<artifactId>weld-servlet</artifactId>
+		<version>2.2.13.Final</version>
+	</dependency>
+
+<dependency>
+  <groupId>javax.faces</groupId>
+  <artifactId>javax.faces-api</artifactId>
+  <version>2.2</version>
+<scope>provided</scope>
+</dependency>
+
+<dependency>
+  <!-- This is the Mojarra Implementation of JSF -->
+  <groupId>org.glassfish</groupId>
+  <artifactId>javax.faces</artifactId>
+  <version>2.2.8-02</version>
+<scope>runtime</scope>
+</dependency>	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
 	</dependencies>
 	<build>
 		<finalName>cookbook</finalName>
@@ -90,8 +209,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
