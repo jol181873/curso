@@ -13,6 +13,11 @@ import org.jsf.jol181873.util.Utilidades;
 @ManagedBean
 @SessionScoped
 public class UsuarioDTO extends Bean<UsuarioDTO> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6372170429234254659L;
+
 	private Set<ConstraintViolation<UsuarioDTO>> validatePassword;
 
 	private long id;

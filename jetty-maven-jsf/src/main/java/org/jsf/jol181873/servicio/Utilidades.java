@@ -14,6 +14,11 @@ import javax.servlet.http.HttpSession;
 @ManagedBean
 @RequestScoped
 public class Utilidades implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6738878530442505232L;
+
 	public void cerrarSesion(ActionEvent ae) {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 

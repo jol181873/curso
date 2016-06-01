@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Model;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
@@ -16,7 +18,14 @@ import javax.persistence.PersistenceContext;
 import org.jsf.jol181873.modelo.dto.PeluqueriaDTO;
 import org.jsf.jol181873.repositorio.RepoPeluqueriaI;
 
+@Alternative
+@Model
 public class RepoPeluqueriaJDBC extends BdJDBC<PeluqueriaDTO> implements RepoPeluqueriaI {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2170879372591363592L;
+
 	private static RepoPeluqueriaJDBC instancia;
 
 	@PersistenceContext

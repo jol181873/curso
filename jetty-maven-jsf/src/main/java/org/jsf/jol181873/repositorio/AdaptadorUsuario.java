@@ -8,6 +8,9 @@ public class AdaptadorUsuario extends AdaptadorAbstracto<Usuario, UsuarioDTO> {
 
 	@Override
 	public UsuarioDTO getDtoDeObjeto(Usuario objeto) {
+		if (objeto == null) {
+			return null;
+		}
 		UsuarioDTO resultado = new UsuarioDTO();
 		resultado.setId(objeto.getUsuaId());
 		resultado.setNombre(objeto.getUsuaNombre());
@@ -18,6 +21,9 @@ public class AdaptadorUsuario extends AdaptadorAbstracto<Usuario, UsuarioDTO> {
 
 	@Override
 	public Usuario getObjetoDEDto(UsuarioDTO objeto) {
+		if (objeto == null) {
+			return null;
+		}
 		Usuario resultado = new Usuario();
 		resultado.setUsuaId(objeto.getId());
 		resultado.setUsuaNombre(objeto.getNombre());

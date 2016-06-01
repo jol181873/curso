@@ -29,7 +29,7 @@ public class Utilidades {
 			}
 			return real;
 		} catch (Exception ex) {
-			log.error("N�mero no v�lido");
+			log.error("Número no válido");
 			log.error(ex.getMessage());
 			log.catching(Level.ERROR, ex);
 
@@ -48,7 +48,7 @@ public class Utilidades {
 			return entero;
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			log.error("N�mero no v�lido");
+			log.error("Número no válido");
 			log.error(ex.getMessage());
 			log.catching(Level.ERROR, ex);
 

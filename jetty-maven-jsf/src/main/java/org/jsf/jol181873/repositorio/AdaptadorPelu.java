@@ -8,6 +8,9 @@ public class AdaptadorPelu extends AdaptadorAbstracto<Peluqueria, PeluqueriaDTO>
 
 	@Override
 	public PeluqueriaDTO getDtoDeObjeto(Peluqueria objeto) {
+		if (objeto == null) {
+			return null;
+		}
 		PeluqueriaDTO resultado = new PeluqueriaDTO();
 		resultado.setPeluId(objeto.getPeluId());
 		resultado.setPeluNombre(objeto.getPeluNombre());
@@ -19,6 +22,9 @@ public class AdaptadorPelu extends AdaptadorAbstracto<Peluqueria, PeluqueriaDTO>
 
 	@Override
 	public Peluqueria getObjetoDEDto(PeluqueriaDTO objeto) {
+		if (objeto == null) {
+			return null;
+		}
 		Peluqueria resultado = new Peluqueria();
 		resultado.setPeluId(objeto.getPeluId());
 		resultado.setPeluNombre(objeto.getPeluNombre());

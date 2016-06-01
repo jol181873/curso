@@ -2,8 +2,11 @@ package org.jsf.jol181873.repositorio;
 
 import java.util.List;
 
+import javax.inject.Named;
+
 import org.jsf.jol181873.modelo.dto.UsuarioDTO;
 
+@Named("repoUsuario")
 public interface RepoUsuarioI extends RepoAbstracto<UsuarioDTO> {
 	@Override
 	public UsuarioDTO obtenerObjeto(UsuarioDTO objeto);

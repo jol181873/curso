@@ -1,5 +1,6 @@
 package org.jsf.jol181873.servicio;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -13,7 +14,12 @@ import org.jsf.jol181873.repositorio.jpa.RepoPeluqueriaJPA;
 
 @RequestScoped
 @Named
-public class ControladorPelus {
+public class ControladorPelus implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6050437226279422404L;
 
 	private List<PeluqueriaDTO> lista;
 
@@ -22,8 +28,7 @@ public class ControladorPelus {
 	private String filtroNombre;
 
 	@Inject
-	@Named("repoPeluqueriaJPA")
-	RepoPeluqueriaI repoPeluqueriaJPA;
+	RepoPeluqueriaI repoPeluqueria;
 
 	public String getObtenerPelus() {
 		RepoPeluqueriaJPA neg = RepoPeluqueriaJPA.getInstance();
@@ -41,7 +46,7 @@ public class ControladorPelus {
 
 		for (PeluqueriaDTO pelu : lista) {
 			if (pelu.getPeluId() == Long.valueOf(codigPelu)) {
-				repoPeluqueriaJPA.borrarObjeto(pelu);
+				repoPeluqueria.borrarObjeto(pelu);
 				break;
 			}
 		}

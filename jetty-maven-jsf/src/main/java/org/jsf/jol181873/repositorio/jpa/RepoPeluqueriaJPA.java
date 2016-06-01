@@ -2,8 +2,8 @@ package org.jsf.jol181873.repositorio.jpa;
 
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
+import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Model;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
@@ -13,9 +13,14 @@ import org.jsf.jol181873.modelo.jpa.Peluqueria;
 import org.jsf.jol181873.repositorio.AdaptadorPelu;
 import org.jsf.jol181873.repositorio.RepoPeluqueriaI;
 
-@Named("repoPeluqueriaJPA")
-@ApplicationScoped
+@Model
+@Alternative
 public class RepoPeluqueriaJPA implements RepoPeluqueriaI {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2530810554755667899L;
+
 	private static RepoPeluqueriaJPA instancia;
 
 	@PersistenceContext

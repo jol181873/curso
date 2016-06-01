@@ -8,15 +8,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Model;
 import javax.inject.Named;
 
 import org.jsf.jol181873.modelo.dto.UsuarioDTO;
 import org.jsf.jol181873.repositorio.RepoUsuarioI;
 
 @Named("repoUsuarioJDBC")
-@ApplicationScoped
+@Model
+@Alternative
 public class RepoUsuarioJDBC extends BdJDBC<UsuarioDTO> implements RepoUsuarioI {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1769595676732032863L;
 	private static RepoUsuarioJDBC instancia;
 	private Connection conn = null;
 

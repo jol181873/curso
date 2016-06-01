@@ -1,13 +1,12 @@
 package org.jsf.jol181873.modelo.dto;
 
-import java.io.Serializable;
-
 /**
  * The persistent class for the PELUQUERIA database table.
  * 
  */
 
-public class PeluqueriaDTO implements Serializable {
+public class PeluqueriaDTO // implements Serializable {
+		extends Bean<PeluqueriaDTO> {
 	private static final long serialVersionUID = 1L;
 
 	private long peluId;

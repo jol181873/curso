@@ -16,10 +16,14 @@ import org.jsf.jol181873.repositorio.RepoUsuarioI;
 @RequestScoped
 @Named
 public class Login implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4613206234767201719L;
+
 	private UsuarioDTO usuario = new UsuarioDTO();
 
 	@Inject
-	@Named("repoUsuarioJDBC")
 	private RepoUsuarioI repoUsuario;
 
 	public String login(String nombre, String pass) {
