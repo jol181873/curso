@@ -7,6 +7,33 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>cookbook Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+
+	<profiles>
+		<profile>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<id>
+				jpa
+			</id>
+			<properties>
+				<repo.peluquerias>org.jsf.jol181873.repositorio.jpa.RepoPeluqueriaJPA</repo.peluquerias>
+				<repo.usuarios>org.jsf.jol181873.repositorio.jpa.RepoUsuarioJPA</repo.usuarios>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>
+				jdbc
+			</id>
+			<properties>
+				<repo.peluquerias>org.jsf.jol181873.repositorio.jdbc.RepoPeluqueriaJDBC</repo.peluquerias>
+				<repo.usuarios>org.jsf.jol181873.repositorio.jdbc.RepoUsuarioJDBC</repo.usuarios>
+			</properties>
+		</profile>
+	</profiles>
+
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -14,8 +41,8 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-	
-		<!--  Log4j -->
+
+		<!-- Log4j -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -27,24 +54,24 @@
 			<version>2.5</version>
 		</dependency>
 
-		<!--  Validador -->
+		<!-- Validador -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.2.4.Final</version>
 		</dependency>
-	
-		  <dependency>
+
+		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>javax.el-api</artifactId>
 			<version>2.2.4</version>
 		</dependency>
-		 <dependency>
+		<dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>javax.el</artifactId>
 			<version>2.2.4</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator-cdi</artifactId>
@@ -52,91 +79,81 @@
 		</dependency>
 
 
-		<!--  Database -->
+		<!-- Database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>1.4.191</version>
 		</dependency>
 
-		<!--  PrimeFaces -->
+		<!-- PrimeFaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>5.3</version>
 		</dependency>
 
-		<!--  Hibernate -->
+		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.1.0.Final</version>
 		</dependency>
-		
-		
-		
-		
-		
-	
-	
-	
-
-<!--  CDI -->	
-	<dependency>
-  <!-- Provided by Tomcat, but needed for compilation -->
-  <groupId>javax</groupId>
-  <artifactId>javaee-web-api</artifactId>
-  <version>7.0</version>
-  <scope>provided</scope>
-</dependency>
 
 
-<dependency>
-  <groupId>javax.enterprise</groupId>
-  <artifactId>cdi-api</artifactId>
-  <version>1.2</version>
-  <scope>provided</scope>
-</dependency>
 
 
-<dependency>
-  <!--
-    JBoss/Weld Refrence Implementation for
-    CDI on a Servlet Container
-  -->
-  <groupId>org.jboss.weld.servlet</groupId>
-  <artifactId>weld-servlet</artifactId>
-  <version>2.2.6.Final</version>
-  <scope>runtime</scope>
-</dependency>
 
 
-<dependency>
-  <groupId>javax.faces</groupId>
-  <artifactId>javax.faces-api</artifactId>
-  <version>2.2</version>
-  <scope>provided</scope>
-</dependency>
 
 
-<dependency>
-  <!-- This is the Mojarra Implementation of JSF -->
-  <groupId>org.glassfish</groupId>
-  <artifactId>javax.faces</artifactId>
-  <version>2.2.8-02</version>
-  <scope>runtime</scope>
-</dependency>
-	
-	
-	
-	
-	
-	
 
-	
+		<!-- CDI -->
+		<dependency>
+			<!-- Provided by Tomcat, but needed for compilation -->
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<!-- JBoss/Weld Refrence Implementation for CDI on a Servlet Container -->
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+			<version>2.2.6.Final</version>
+			<scope>runtime</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>javax.faces-api</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<!-- This is the Mojarra Implementation of JSF -->
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.2.8-02</version>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>cookbook</finalName>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -155,6 +172,25 @@
 					<scanintervalseconds>2</scanintervalseconds>
 				</configuration>
 			</plugin>
+			
+			
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-war-plugin</artifactId>
+			    <configuration>
+			        <webResources>
+			            <resource>
+			                <filtering>true</filtering>
+			                <directory>src/main/webapp</directory>
+			                <includes>
+			                    <include>**/beans.xml</include>
+			                </includes>
+			            </resource>
+			        </webResources>
+			        <warSourceDirectory>src/main/webapp</warSourceDirectory>
+			        <webXml>src/main/webapp/WEB-INF/beans.xml</webXml>
+			    </configuration>
+			</plugin>				
 		</plugins>
 	</build>
 </project>

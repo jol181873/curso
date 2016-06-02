@@ -274,54 +274,127 @@
 			</script>
 		</c:if>
 		
-		<div id="listadoPelus">			
-			<!-- <h:inputText value="#{controladorPelus.filtroNombre}"/>
-			<h:commandButton action="#{controladorPelus.obtenerPelus}" value="Aceptar" />	
-			<h:commandLink action="#{controladorPelus.obtenerPelus}">Listado</h:commandLink>		
-			
-			<h:dataTable var="pelu" value="#{controladorPelus.lista}" 
-						styleClass="order-table" 
-						headerClass="order-table-header"
-		    			rowClasses="order-table-odd-row,order-table-even-row">
-				<h:column>
-					<f:facet name="header">Nombre</f:facet>
-					#{pelu.nombre}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Dirección</f:facet>
-					#{pelu.direccion}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Teléfono</f:facet>
-					#{pelu.telefono}
-				</h:column>
-			</h:dataTable>
-			-->
-			
-			<h:form id="miform" prependId="false">    		    
-			    <p:dataTable id="pelus" var="pelu" value="#{controladorPelus.lista}" widgetVar="pelusTable" filteredValue="#{controladorPelus.pelusFiltradas}" emptyMessage="No hay registros" paginator="true" resizableColumns="true" rows="14" paginatorPosition="bottom">                    
-			        <p:column filterBy="#{pelu.peluNombre}" headerText="Nombre" filterMatchMode="contains">			            
-			            <h:outputText value="#{pelu.peluNombre}" />
+		<div id="listadoPelus" style="display:none">					
+			<h:form id="miform" prependId="false">    
+				<p:growl id="msgs" showDetail="true"/>		    
+			    <p:dataTable id="pelus" var="pelu" value="#{controladorPelus.lista}" widgetVar="pelusTable"  emptyMessage="No hay registros" paginator="true" resizableColumns="true" rows="14" paginatorPosition="bottom" editable="true" >
+			    
+			    	<p:ajax event="rowEdit" listener="#{controladorPelus.onRowEdit}" update="msgs" />
+ 			        <p:ajax event="rowEditCancel" listener="#{controladorPelus.onRowCancel}" update="msgs" />
+ 
+			                        
+			        <p:column filterBy="#{pelu.peluNombre}" headerText="Nombre" filterMatchMode="contains">	
+			        
+			        	  <p:cellEditor>
+			                  <f:facet name="output"><h:outputText value="#{pelu.peluNombre}" /></f:facet>
+			                  <f:facet name="input"><p:inputText id="modelInput" value="#{pelu.peluNombre}" style="width:96%"/></f:facet>
+			              </p:cellEditor>
+			        		            
 			        </p:column>
-			        <p:column filterBy="#{pelu.peluDireccion}" headerText="Dirección" filterMatchMode="contains">			            
-			            <h:outputText value="#{pelu.peluDireccion}" />
+			        
+			        <p:column filterBy="#{pelu.peluDireccion}" headerText="Dirección" filterMatchMode="contains">			        
+			        	<p:cellEditor>
+			                  <f:facet name="output"><h:outputText value="#{pelu.peluDireccion}" /></f:facet>
+			                  <f:facet name="input"><p:inputText value="#{pelu.peluDireccion}" style="width:96%"/></f:facet>
+			              </p:cellEditor>			              			            
 			        </p:column>
-			        <p:column filterBy="#{pelu.peluTelefono}" headerText="telefono" filterMatchMode="contains">
-			            <h:outputText value="#{pelu.peluTelefono}" />
+			        
+			        <p:column filterBy="#{pelu.peluTelefono}" headerText="telefono" filterMatchMode="contains">			        
+			        	<p:cellEditor>
+			                  <f:facet name="output"><h:outputText value="#{pelu.peluTelefono}" /></f:facet>
+			                  <f:facet name="input"><p:inputText value="#{pelu.peluTelefono}" style="width:96%"/></f:facet>
+			              </p:cellEditor>			        
 			        </p:column>
-			        <p:column>
-			            <h:commandButton class="botonBorrar" action="#{controladorPelus.borrar}" value="borrar">
+			        
+			        <p:column style="width:75px">
+			            <h:commandButton class="botonBorrar" action="#{controladorPelus.borrar}" value="borrar" style="display:none">
 			            	<f:param name="codigoPelu" value="#{pelu.peluId}"></f:param>
 			            </h:commandButton>
 			            
-			            <input type="button" value="xxxx" onclick="$('#dialogoBorrar').dialog('open');"></input>
+			            <input type="button" value="Borrar" onclick="$('#dialogoBorrar').dialog('open');"></input>
 			        </p:column>
-			    </p:dataTable>
+			        
+			        <p:column style="width:32px">
+			           <p:rowEditor />
+			       </p:column>
+			    </p:dataTable>			    			    
 			    
-			    <div id="dialogoBorrar">
-			    	¿Desea borrar el registro?
-			    </div>
+			    
+			    
 			</h:form>
-		</div>					
+			<h:form>
+			    <h:commandButton action="#{controladorPelus.nuevo}" value="Nueva">
+			    </h:commandButton>
+		    </h:form>
+			<div id="dialogoBorrar">
+		    	¿Desea borrar el registro?
+		    </div>
+		</div>		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+					
 </body>
 </html>

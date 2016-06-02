@@ -61,18 +61,22 @@ public class RepoPeluqueriaJPA implements RepoPeluqueriaI {
 
 	@Override
 	public void insertarObjeto(PeluqueriaDTO objeto) {
+		em.getTransaction().begin();
 		this.em.persist(adaptador.getObjetoDEDto(objeto));
+		em.getTransaction().commit();
 	}
 
 	@Override
 	public void modificarObjeto(PeluqueriaDTO objeto) {
+		em.getTransaction().begin();
 		this.em.merge(adaptador.getObjetoDEDto(objeto));
+		em.getTransaction().commit();
 	}
 
 	@Override
 	public void borrarObjeto(PeluqueriaDTO objeto) {
 		em.getTransaction().begin();
-		this.em.remove(adaptador.getObjetoDEDto(objeto));
+		this.em.remove(this.em.merge(adaptador.getObjetoDEDto(objeto)));
 		em.getTransaction().commit();
 	}
 }

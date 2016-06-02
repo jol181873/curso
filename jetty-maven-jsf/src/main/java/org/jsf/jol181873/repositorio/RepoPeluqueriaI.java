@@ -19,5 +19,4 @@ public interface RepoPeluqueriaI extends RepoAbstracto<PeluqueriaDTO> {
 
 	@Override
 	public void borrarObjeto(PeluqueriaDTO objeto);
-
 }

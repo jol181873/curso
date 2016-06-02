@@ -7,6 +7,10 @@
   >
   
    <alternatives>
+        <!--  <class> ${repo.peluquerias} </class>
+        <class> ${repo.usuarios} </class>
+        -->
+        
         <class>org.jsf.jol181873.repositorio.jpa.RepoPeluqueriaJPA</class>
         <class>org.jsf.jol181873.repositorio.jpa.RepoUsuarioJPA</class>
     </alternatives>
